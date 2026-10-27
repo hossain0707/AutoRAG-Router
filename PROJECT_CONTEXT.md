@@ -40,7 +40,7 @@ Avoid treating GraphRAG, Hybrid, Agentic, Self-RAG and CRAG as mutually exclusiv
 | Production deployment snapshot | `dpl_EoAEbCTLC3F5yJg1WWTZ2w6Evuiy` | `READY` at 2026-10-27 check; may change after redeploys |
 | Deployment inspection | https://vercel.com/najmuleee1996-6229s-projects/autorag-router-demo/EoAEbCTLC3F5yJg1WWTZ2w6Evuiy | Deployment snapshot |
 | GitHub Actions | https://github.com/hossain0707/AutoRAG-Router/actions | CI, optional Pages, and scheduled daily journal |
-| GitHub Pages | https://hossain0707.github.io/AutoRAG-Router/ | **Previously “Site not found”; do NOT use as primary live demo without confirming activation** |
+| GitHub Pages | https://hossain0707.github.io/AutoRAG-Router/ | **Previously “Site not found”; `pages.yml` failed at Configure GitHub Pages (Get Pages site: Not Found); do NOT use as primary live demo** |
 
 ### Vercel operating facts, verified 2026-10-27
 

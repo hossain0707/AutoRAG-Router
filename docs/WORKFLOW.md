@@ -38,6 +38,10 @@ Script workflow:
 6. After a deployed frontend modification, test `https://autorag-router-demo.vercel.app/` in a real browser with Graph and Structured scenarios; compare deployed JS/HTML to GitHub `docs/` source.
 7. Do not close the task if the promised public demo or actual runtime behavior has not been verified; clearly state limitations.
 
+## Independent daily deployment/status review
+
+A ChatGPT automation named **AutoRAG daily project sync** was enabled on 2026-10-27 with a flexible daily schedule around **10:00 Asia/Seoul**, starting 2026-10-28. It reads current GitHub/Vercel state and the handover. It may reconcile **verified** changes into `PROJECT_CONTEXT.md` / `CHANGELOG.md` and send a concise update, but must not change deployed code, commercial license, provider configuration or secrets. Execution and write success are contingent on connected app authorization; **check the automation result** rather than assuming updates happened. The GitHub Actions journal remains the independent, automatically verified source-change recorder.
+
 ## Deployment reality and reproducibility
 
 - `README.md` Live Demo: https://autorag-router-demo.vercel.app/
@@ -45,7 +49,7 @@ Script workflow:
 - Last verified production snapshot: `dpl_EoAEbCTLC3F5yJg1WWTZ2w6Evuiy` (`READY`, 2026-10-27).
 - Source in last Vercel deployment: `src/index.html`, `src/app.js`, `src/styles.css`; repository browser demo source: `docs/index.html`, `docs/app.js`, `docs/styles.css`.
 - Dashboard screenshot indicated **Connect Git Repository** and deployment source `vercel deploy`. As of that verification, auto-deploy from GitHub pushes **was not established**.
-- GitHub Pages URL previously failed. Its optional workflow does not mean the domain is live.
+- GitHub Pages URL previously failed, and the 2026-10-27 `Configure GitHub Pages` action returned `Get Pages site failed: Not Found`. Optional `.github/workflows/pages.yml` is **manual-only** until the owner enables GitHub Pages; this does not affect the Vercel demo.
 - Deployment secrets must be set only through protected Vercel/GitHub secret storage. Do not store personal session/cookies or tokens in Markdown.
 
 To deploy a revised demo: (a) verify project/team identity; (b) link the correct GitHub source/build root if approved, or explicitly deploy the `docs/` static directory via authenticated Vercel tool/CLI; (c) inspect the new deployment state, alias and files; (d) run real browser smoke tests; (e) update the canonical context with observed deployment SHA/URL and test result. Git commit alone is NOT deployment verification.

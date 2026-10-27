@@ -10,10 +10,12 @@ This file records **why** functionality changed, what was **added / changed / re
 - Documented workflow for maintaining project decisions, cloud resource identifiers, limitations and quality evidence (`docs/WORKFLOW.md`).
 - Scheduled GitHub Actions journal and incremental Git diff recorder (`.github/workflows/daily-project-journal.yml`, `scripts/update_daily_log.py`, `docs/DAILY_LOG.md`).
 - Automated tests for journaling and file-change classification (`tests/test_daily_journal.py`).
+- A separate **daily ChatGPT project sync** to review GitHub/Vercel drift and update verified handover facts when connected permissions permit.
 
 ### Changed
 
 - README now links new developers to the canonical handover and history. Future meaningful modifications must update both code and relevant context records.
+- Made the optional GitHub Pages publication workflow **manual-only** while Pages is not enabled; the primary live demo remains on Vercel. The 2026-10-27 automatic Pages run failed at `Configure GitHub Pages` with Not Found.
 
 ### Limitations
 

@@ -1,11 +1,9 @@
 name: Publish interactive RAG lab
 
+# GitHub Pages is not enabled for this repository.
+# Optional publisher is intentionally manual-only until the owner enables Pages.
+# The production Live Demo uses Vercel instead.
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'docs/**'
-      - '.github/workflows/pages.yml'
   workflow_dispatch:
 
 permissions:
