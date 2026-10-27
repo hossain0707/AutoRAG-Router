@@ -2,163 +2,223 @@
 
 # AutoRAG Router
 
-### One query. The right retrieval strategy.
+### One task. The right retrieval strategy. Automatically.
 
-**Task-adaptive retrieval orchestration · Explainable decisions · Local-first API**
+**Explainable task routing · Hybrid search · Graph context · Adaptive fallback · Evidence-aware retrieval**
 
+[![Python](https://img.shields.io/badge/Python-3.11%2B-3670A0?logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/API-FastAPI-00897B?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![CI](https://github.com/hossain0707/AutoRAG-Router/actions/workflows/ci.yml/badge.svg)](https://github.com/hossain0707/AutoRAG-Router/actions/workflows/ci.yml)
-![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-REST-009688?logo=fastapi&logoColor=white)
-![License](https://img.shields.io/badge/license-MIT-7B61FF)
-![Version](https://img.shields.io/badge/version-0.1.0-36B37E)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Interactive_Routing_Lab-30BCCB)](https://hossain0707.github.io/AutoRAG-Router/)
+[![License](https://img.shields.io/badge/License-Personal_Noncommercial-F3C775)](LICENSE)
 
-**[Quick start](#quick-start) · [Interactive dashboard](#interactive-dashboard) · [Architecture](#architecture) · [Documentation](docs/ARCHITECTURE.md) · [Security](#security--production-readiness)**
+**[▶ Open the live interactive demo](https://hossain0707.github.io/AutoRAG-Router/)** &nbsp; · &nbsp; **[Watch real app walkthrough](assets/real-router-walkthrough.mp4)** &nbsp; · &nbsp; [Run locally](#quick-start) &nbsp; · &nbsp; [Architecture](#architecture) &nbsp; · &nbsp; [License](#license--commercial-use)
 
-<img src="assets/architecture.svg" alt="Animated AutoRAG Router architecture" width="100%" />
+<img src="assets/real-router-walkthrough.gif" width="100%" alt="Real browser recording: AutoRAG Router switching among graph, structured, multimodal, agentic, hybrid and no-retrieval strategies, displaying actual matching source evidence." />
+
+<sub>Actual recorded interactions with the browser-side demo · Synthetic example documents · No paid model or external service</sub>
 
 </div>
 
-## Overview
+---
 
-AutoRAG Router is a Python framework for dynamically selecting an appropriate retrieval plan for each incoming task. Instead of using the same document-search strategy for every question, it classifies task intent, chooses from composable retrieval paths, checks evidence and exposes an auditable execution trace.
+## What is AutoRAG Router?
 
-This is a **runnable, tested local-first foundation**, not a claim of fully automated enterprise-scale accuracy. It deliberately runs without GPU, paid APIs or pretrained neural models. All external model and index integrations remain future work.
+A conventional retrieval-augmented generation pipeline often applies the same retrieval method to every request. **AutoRAG Router** makes retrieval **task-aware**: it inspects the question, chooses an appropriate local retrieval strategy, performs retrieval, checks for evidence, and exposes a trace of its decision.
 
-### Key capabilities
+It provides a **runnable Python API** and a **standalone interactive browser demo**. Both use the same strategy categories and explainable policy concepts. The public demo is an independent JavaScript implementation of the Python baseline; it is not a remote Python API deployment.
 
-- **Automatic routing:** local explainable policy selects `no_rag`, `hybrid`, `graph`, `agentic`, `multimodal` or `structured`.
-- **Hybrid retrieval:** BM25 and character-trigram similarity fused with reciprocal rank fusion; neural vector retrieval is a future adapter.
-- **Composable fallback:** specialized retrieval automatically falls back to hybrid when it has no results.
-- **Source-aware evidence:** extractive snippets, document sources, retrieval scores and method-level traces; no invented LLM answers.
-- **Local durable indexing:** SQLite-backed documents with tenant partitioning, metadata filters and upserts.
-- **Developer experience:** typed FastAPI, OpenAPI at `/docs`, CLI, interactive web UI, Docker Compose and automated tests.
+**Why it matters:** questions about dependency graphs, financial records, architecture diagrams, technical research and simple factual search need different retrieval behaviors. The application chooses a route without requiring developers to hard-code a strategy for every call.
 
-## Interactive dashboard
+### See it work, not just read about it
 
-Start the API and open **http://127.0.0.1:8000**. Select **Load demo knowledge**, enter a query, and watch the engine choose the retrieval path and explain the execution.
+<div align="center">
+<a href="https://hossain0707.github.io/AutoRAG-Router/"><img src="assets/real-routing-preview.png" alt="Screenshot captured from the real AutoRAG Router interactive routing dashboard" width="92%"></a>
 
-Example task: *“How are Atlas and Beacon connected in our architecture?”* → **Graph** retrieval over explicitly tagged entity relations; if nothing is found, **Hybrid** fallback.
+[**Launch interactive live demo →**](https://hossain0707.github.io/AutoRAG-Router/) · [View GitHub Pages deployment](https://github.com/hossain0707/AutoRAG-Router/actions/workflows/pages.yml) · [Download recorded walkthrough](assets/real-router-walkthrough.mp4)
 
-> The included dashboard uses synthetic example documents. It executes the real backend locally; no third-party API or paid model is needed.
+</div>
 
-## Architecture
+The live lab lets you type your own question, run automatic routing, inspect each strategy, review supporting snippets and scores, see fallback/verification events, and add custom text to its **in-memory** knowledge base. Your entered text remains in the browser; do not enter confidential data.
 
-```
-User / Agent / MCP-compatible integration (future)
-                    |
-           FastAPI + validation
-                    |
-          Intent-aware task router
-                    |
-    +---------------+------------------+
-    |               |                  |
- No retrieval   Hybrid / Graph    Decomposed / Visual /
-                 retrieval         Structured retrieval
-    |               |                  |
-    +---------------+------------------+
-                    |
-         Evidence check and fallback
-                    |
-          Extractive source response
-          + trace + request ID
-```
+> **Important:** GitHub Pages serves a static browser-only sandbox: it does not expose a hosted vector database, cloud LLM or the Python backend. The live lab executes actual browser-side routing and lexical retrieval logic, not a decorative click-through simulation. To exercise the Python REST API, [run it locally](#quick-start).
 
-<img src="assets/architecture.svg" width="100%" alt="Routing and verification stages" />
+## Key capabilities
 
-### Strategy matrix
+| Area | Included today | Limitation / future direction |
+| --- | --- | --- |
+| **Adaptive strategy router** | Deterministic, inspectable task-intent policy; automatic or explicit selection | Learned routing and production calibration are planned |
+| **Hybrid retrieval** | BM25 + character-trigram cosine; reciprocal rank fusion | Trigram matching is **not a neural embedding** |
+| **Graph retrieval** | One-hop lookups on explicitly supplied entity tags | No knowledge-graph database or multi-hop graph reasoning yet |
+| **Agentic-style retrieval** | Bounded query decomposition + merged matching | Not an autonomous tool-using LLM agent |
+| **Multimodal-text retrieval** | Search over pre-extracted image captions, PDF text and tables | No native image understanding, OCR or vision encoder |
+| **Structured retrieval** | Metadata filter and lexical/fuzzy search | No generated SQL / warehouse execution |
+| **Corrective fallback** | Retry Hybrid RAG when a specialized route returns no documents | No self-training or multi-pass corrective model |
+| **Evidence signals** | Extractive results, sources, retrieval scores, method trace | Retrieval scores do **not** prove factual correctness |
+| **Persistence and APIs** | SQLite tenant-partitioned records, FastAPI, CLI, Docker | Not yet hardened for public multi-tenant production |
+| **Public interactive lab** | Fully functional client-side router, sample documents, editable questions | Isolated sandbox; no hosted Python API or persistent database |
 
-| Strategy | Trigger | Current backend | Notes |
-| --- | --- | --- | --- |
-| No-RAG | Greeting or non-document task | Skip retrieval | Does not generate a chat reply |
-| Hybrid | General factual question | BM25 + char-trigram RRF | No pretrained embeddings |
-| Graph | Relationship / dependency question | Entity-tag overlap | One-hop only |
-| Agentic | Comparison / multi-part question | Bounded query decomposition | No autonomous tools |
-| Multimodal | Diagram / PDF / image question | Caption / extracted-text search | No image encoder |
-| Structured | Metric / record question | Metadata filters + hybrid | No SQL execution |
-| Corrective layer | No specialized hits | Hybrid retry | Configured fallback |
-| Verification layer | Retrieval finishes | Evidence score threshold | Heuristic, not factual proof |
+## How routing works
+
+<img src="assets/architecture.svg" width="100%" alt="AutoRAG Router architecture showing query analysis, task-aware routing, retrieval strategies, evidence checking and source-linked results" />
+
+1. **Understand intent** — classify the query using a bounded, explainable routing policy.
+2. **Select a route** — use No-RAG, Hybrid, Graph, Agentic-style, Multimodal-text or Structured retrieval.
+3. **Execute retrieval** — operate against indexed documents in the caller's tenant partition; apply metadata filters.
+4. **Recover when needed** — when a specialized search yields no hits, optionally fall back to Hybrid RAG.
+5. **Check evidence** — identify whether the top retrieved result meets a heuristic evidence threshold.
+6. **Return traceable results** — extractive text, ranked source references, routing decision and execution trace.
+
+### Task → strategy examples
+
+| Example task | Selected route | Why |
+| --- | --- | --- |
+| “How are Atlas and Beacon connected?” | Graph | Explicit entity relationships |
+| “What is our phishing response policy?” | Hybrid | Factual document lookup |
+| “Compare employee leave and security procedures.” | Agentic-style | Multi-part question |
+| “Explain the service topology diagram.” | Multimodal-text | Search extracted diagram captions |
+| “What was Q2 revenue?” | Structured | Numerical / tabular intent |
+| “Hello” | No-RAG | Document retrieval unnecessary |
+
+_These are routing examples, not claims of calibrated model intelligence. Route behavior and source quality depend on the indexed data._
 
 ## Quick start
 
-### Option A — Python (Windows / macOS / Linux)
+### Python — Windows, macOS, Linux
+
+Requires Python 3.11+.
 
 ```bash
 git clone https://github.com/hossain0707/AutoRAG-Router.git
 cd AutoRAG-Router
 python -m venv .venv
-# Linux/macOS: source .venv/bin/activate
-# Windows PowerShell: .venv\Scripts\Activate.ps1
-pip install -e '.[dev]'
+
+# macOS / Linux
+source .venv/bin/activate
+
+# Windows PowerShell instead:
+# .venv\Scripts\Activate.ps1
+
+python -m pip install -e ".[dev]"
 autorag serve
 ```
 
-Open **http://127.0.0.1:8000** for the UI, **http://127.0.0.1:8000/docs** for interactive API docs.
+Open **http://127.0.0.1:8000** for the local Python-powered dashboard and **http://127.0.0.1:8000/docs** for Swagger/OpenAPI.
 
-### Option B — Docker Compose
+**Note:** the public GitHub Pages lab and Python API dashboard are separate frontends. Use the API dashboard when you want queries to execute on your locally installed Python service.
+
+### Docker Compose
 
 ```bash
 cp .env.example .env
-# Replace the placeholder with a secure random API key before starting.
+# Edit .env and set a securely generated AUTORAG_API_KEY.
 docker compose up --build
 ```
 
-The Compose configuration binds to localhost, runs as a non-root user and stores SQLite data in a named volume. Enter the configured key in the dashboard before making authenticated requests.
+The example Compose deployment binds to localhost, uses a non-root container, and persists its SQLite database in a named volume. Supply your key to authenticated API requests. Do not expose an unauthenticated instance directly to the Internet.
 
-### Option C — CLI
-
-```bash
-autorag query "What is the annual leave policy?" --tenant demo
-```
-
-First ingest documents through the API or dashboard. See [API examples](docs/API_EXAMPLES.md).
-
-## API in 30 seconds
+### REST API — ingest and query
 
 ```bash
 curl -X POST http://127.0.0.1:8000/v1/documents \
   -H 'Content-Type: application/json' \
-  -d '{"documents":[{"id":"doc-1","title":"Policy","text":"Employees receive twenty days of paid leave.","tenant_id":"demo","source":"handbook"}]}'
+  -d '{"documents":[{"id":"security-policy","title":"Phishing policy","text":"Suspicious links must be reported to the security team immediately.","source":"handbook","tenant_id":"demo"}]}'
 
 curl -X POST http://127.0.0.1:8000/v1/query \
   -H 'Content-Type: application/json' \
-  -d '{"query":"What is the paid leave policy?","tenant_id":"demo"}'
+  -d '{"query":"How should I report suspicious links?","tenant_id":"demo"}'
 ```
 
-With `AUTORAG_API_KEY` enabled, add `-H 'x-api-key: ...'` to each command. The JSON response includes `decision.primary`, `decision.reasons`, `hits`, `grounded`, `trace`, `latency_ms`, and `request_id`.
+Add `-H 'x-api-key: YOUR_KEY'` when `AUTORAG_API_KEY` is configured. The response includes `decision.primary`, `decision.reasons`, `hits`, `grounded`, `trace`, `latency_ms`, and `request_id`. See [API examples](docs/API_EXAMPLES.md).
 
-## Run verification
+### Try the demo without Python or Docker
+
+The GitHub Pages demo is plain HTML + CSS + vanilla JavaScript. You can also open the checked-in `docs/index.html` in a local web browser. No server-side installation or API key is required for that preview. It operates on its own **in-memory** example data.
+
+## Repository guide
+
+```text
+AutoRAG-Router/
+├── autorag/
+│   ├── api.py              # FastAPI routes and key check
+│   ├── router.py           # Explainable task routing policy
+│   ├── retrieval.py        # BM25, trigram, graph, decomposition
+│   ├── engine.py           # Evidence/fallback orchestration
+│   ├── store.py            # SQLite persistence
+│   ├── cli.py              # CLI commands
+│   └── static/index.html   # Local Python API dashboard
+├── docs/
+│   ├── index.html          # Public interactive demo
+│   ├── app.js              # Working client-side router
+│   ├── styles.css          # Responsive lab UI
+│   ├── ARCHITECTURE.md     # Implementation notes and risks
+│   └── API_EXAMPLES.md     # Request/response examples
+├── assets/
+│   ├── real-router-walkthrough.gif    # Actual UI screen capture
+│   ├── real-router-walkthrough.mp4    # Actual UI video capture
+│   └── real-routing-preview.png      # Actual dashboard screenshot
+├── tests/                 # Python test suite
+├── scripts/               # Capture scripts and smoke tests
+├── .github/workflows/     # CI and GitHub Pages deployment
+├── Dockerfile
+├── compose.yml
+└── LICENSE
+```
+
+## Testing and verification
 
 ```bash
 python -m pytest -q
 python -m compileall -q autorag
+node --check docs/app.js
 ```
 
-Included tests cover routing, explicit overrides, persistence, local retrieval, entity tags, tenant isolation, metadata filtering, API behavior and API-key checks. GitHub Actions runs tests on Python 3.11 and 3.12.
+The Python tests cover task routing, strategy overrides, retrieval, fallback, persistence, isolation, filters, FastAPI requests and API key handling. The static demonstration is also exercised in Chromium against example scenarios. CI runs Python tests; the Pages workflow publishes the browser demo when GitHub Pages is enabled.
 
-## Security & production readiness
+To regenerate the **real** UI GIF and MP4 (requires Chromium, `playwright` and `ffmpeg`):
 
-**Status: v0.1.0 tested developer preview, not security-certified enterprise production software.** Enterprise deployment needs identity-derived tenant authorization, rate limiting, TLS, audit logging, quotas, managed indexes and threat testing. Tenant IDs are currently client supplied; the single API key is deployment-wide rather than user-specific. Never expose the default unauthenticated server publicly. Check the full [architecture and threat model](docs/ARCHITECTURE.md).
+```bash
+python scripts/capture_live_demo.py
+```
 
-## Planned integrations
+The capture script clicks through each scenario and asserts the displayed routing decision. The GIF is a browser recording of the working application rather than a generated product mockup.
 
-| Area | Intended future adapters |
-| --- | --- |
-| Embedding and reranking | SentenceTransformers, BGE, hosted embedding services |
-| Vector stores | Qdrant, pgvector, FAISS |
-| Graph | Neo4j, RDF indexes |
-| Agents | LangGraph, NEXUS-100, MCP |
-| Documents | PyMuPDF, OCR, table extraction, vision encoders |
-| Observability | OpenTelemetry, Prometheus, trace visualizations |
-| Optimization | Calibrated routing model, measured quality/cost/latency objectives |
+## Architecture and safety
 
-These integrations **are not included as functioning implementations in v0.1.0**.
+This project is a **tested developer-preview foundation**, not a security-certified enterprise RAG system. Before using it in a protected environment, add identity-derived tenant authorization, TLS, rate limits, audit logs, production-grade indexes and document-injection defenses. The provided API key is deployment-wide; caller-supplied tenant IDs are not sufficient authorization for an Internet-facing multi-tenant service.
 
-## Promotional demo
+The public demo has **no backend, account management or persistent storage** and does not send queries to AI providers. Its graph traversal is entity-tag overlap, and the multimodal route works only with pre-extracted captions/text. Evidence checks are heuristic signals, not a guarantee that snippets are correct.
 
-A short cinematic demonstration can be generated from the included `scripts/make_promo.py` script (requires optional Pillow, NumPy and FFmpeg). The resulting MP4 uses synthetic scenario visuals; it is **not** a claim of independent enterprise benchmarking. The dashboard is the recommended way to test real system behavior.
+For full details, see [architecture and threat model](docs/ARCHITECTURE.md).
 
-## Maintainer and license
+## Roadmap
 
-**Created and maintained by Md Najmul Hossain** · [GitHub @hossain0707](https://github.com/hossain0707)
+- **Neural retrieval and reranking:** plug-in embeddings, Qdrant/pgvector, BGE or equivalent.
+- **Graph and structured adapters:** Neo4j, governed SQL planning and schema-aware retrieval.
+- **Multimodal ingestion:** PDF parsing, OCR, visual encoders and diagram understanding.
+- **Learning-based router:** measured quality, cost and latency objectives with benchmark datasets.
+- **Enterprise integration:** MCP, agent frameworks, NEXUS-100, identity-aware tenants and observability.
 
-Released under the [MIT License](LICENSE). Contributions, issues and reproducible benchmarks are welcome.
+These are **planned capabilities**, not claims that they are already implemented.
+
+## License & commercial use
+
+**© 2026 Md Najmul Hossain. All rights reserved.**
+
+AutoRAG Router is **free for individual personal, educational and other noncommercial use** subject to the [AutoRAG Router Personal Noncommercial License v1.0](LICENSE). Individual hobby experimentation, learning and unpaid independent research are permitted under that license. Redistribution, modified copies and use are subject to its terms.
+
+**Commercial use is NOT permitted without a separate written license.** This includes business or enterprise internal use, use in paid customer services, commercial SaaS/API deployments, embedding in monetized products, and commercial consulting or freelance work.
+
+**For commercial licensing, partnerships, integration or deployment:** [Contact Md Najmul Hossain on GitHub](https://github.com/hossain0707) or [open a commercial licensing inquiry](https://github.com/hossain0707/AutoRAG-Router/issues/new).
+
+**Licensing note:** this is **source-available, not an OSI-approved open-source license**. Earlier copies of this repository distributed under MIT retain their previously granted MIT permissions; a new license does not retroactively revoke those rights.
+
+---
+
+<div align="center">
+
+**Designed and maintained by [Md Najmul Hossain](https://github.com/hossain0707)**
+
+[Explore the interactive lab](https://hossain0707.github.io/AutoRAG-Router/) · [Browse the source](https://github.com/hossain0707/AutoRAG-Router) · [Read the noncommercial license](LICENSE)
+
+</div>

@@ -1,21 +1,77 @@
-MIT License
+AutoRAG Router — Personal Noncommercial License v1.0
+Copyright (c) 2026 Md Najmul Hossain. All rights reserved.
 
-Copyright (c) 2026 Md Najmul Hossain
+PLEASE READ THESE TERMS BEFORE USING THE SOFTWARE.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. GRANT FOR INDIVIDUAL NONCOMMERCIAL USE
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Subject to compliance with this License, Md Najmul Hossain (the
+"Licensor") grants individual natural persons a worldwide,
+non-exclusive, royalty-free, revocable-on-breach license to download,
+install, run, study, reproduce, and modify AutoRAG Router (the
+"Software") solely for their own personal, educational, academic
+research, or other genuinely noncommercial activities.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+An individual may share an unmodified or modified copy for others'
+noncommercial use only if this full License and the original copyright
+notice accompany every copy. Modifications must be clearly identified.
+No contributor or recipient may grant commercial rights to the Software.
+
+2. COMMERCIAL USE IS NOT PERMITTED WITHOUT WRITTEN AUTHORIZATION
+
+A separately negotiated commercial license from the Licensor is required
+BEFORE any commercial use. Prohibited activities without that license
+include, without limitation:
+
+  (a) using the Software in a company, business, or organization's
+      internal operational or production processes, including consulting;
+  (b) embedding, bundling, redistributing, or integrating the Software
+      in a paid product, commercial API, SaaS offering, or customer service;
+  (c) operating a business using the Software, whether or not the
+      Software itself is sold or charged for;
+  (d) providing commercially sponsored, paid, or monetized services,
+      training, or demonstrations that rely on the Software; and
+  (e) selling, licensing, or sublicensing the Software or derivatives.
+
+Personal learning, hobby experiments, and unpaid independent academic
+research by individuals are permitted. Commercial activity by an
+individual, including freelance and sole-proprietor work, is NOT
+permitted without a commercial license.
+
+To discuss commercial licensing, contact the Licensor through:
+https://github.com/hossain0707 (or open a licensing inquiry in the
+AutoRAG-Router GitHub repository).
+
+3. CONDITIONS AND RESERVATIONS
+
+All copies and modified versions must retain this License and copyright
+notice. You may not remove attribution, claim endorsement, or use the
+Licensor's trademarks or name to imply an official partnership. Except
+as expressly granted here, all rights are reserved. No patent or
+trademark license is granted by this document.
+
+4. TERMINATION
+
+The license granted above automatically terminates if you materially
+breach these terms. On termination, cease using and distributing the
+Software and delete copies in your possession or control. Rights that
+were validly granted to other recipients before your breach are not
+affected unless those recipients separately breach this License.
+
+5. DISCLAIMER; LIMITATION OF LIABILITY
+
+THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE, NON-INFRINGEMENT OR FITNESS FOR PRODUCTION USE. TO
+THE FULLEST EXTENT ALLOWED BY LAW, THE LICENSOR IS NOT LIABLE FOR ANY
+DAMAGES ARISING FROM THE SOFTWARE OR ITS USE.
+
+6. EARLIER RELEASES
+
+This License applies to the Software as distributed in revisions that
+include it. It does NOT retroactively cancel permissions granted under
+an earlier valid license. Earlier copies distributed under the MIT
+License remain governed by that earlier license as applicable.
+
+This is a noncommercial, source-available license, NOT an OSI-approved
+open-source license. Commercial permission must be obtained separately.

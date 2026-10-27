@@ -20,6 +20,10 @@ python -m pytest -q
 - Preserve tenant separation. Multi-tenant production requires a verified identity-to-tenant mapping.
 - Avoid committing secrets, datasets with private information, trained model weights or generated databases.
 
+## License and contributions
+
+AutoRAG Router uses a **personal noncommercial, source-available license**. Commercial use requires separate written permission from Md Najmul Hossain. Before submitting a pull request, make sure you have the rights to contribute the changes, and understand that accepted contributions will be distributed under the repository license. This is not an OSI-approved open-source license.
+
 ## Commercial demos
 
 Use `scripts/make_promo.py` for a product-concept demo and label synthetic footage. Demonstrate actual runtime behavior with the included dashboard or API example.
