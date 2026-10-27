@@ -35,3 +35,17 @@ The record tracks observed added, modified, deleted and renamed paths from one p
 - **Commits observed:**
   - [`0ec370148d`](https://github.com/hossain0707/AutoRAG-Router/commit/0ec370148d110043dce3a94cfc69b855f607d8d0): docs: establish canonical project handover and automated daily source journal
 - **Reminder:** update `PROJECT_CONTEXT.md` / `CHANGELOG.md` manually for new design decisions or deployment changes.
+
+### Auto-captured 2026-10-27 — push
+
+- **Compared commits:** `0ec370148d11` → `f1360b587f69`
+- **Record source:** Git file history (`main` checkout); not a live deployment check.
+- **Files changed:** 4 path events.
+- **Modified (4):**
+  - `.github/workflows/pages.yml`
+  - `CHANGELOG.md`
+  - `PROJECT_CONTEXT.md`
+  - `docs/WORKFLOW.md`
+- **Commits observed:**
+  - [`f1360b587f`](https://github.com/hossain0707/AutoRAG-Router/commit/f1360b587f69516374fda3a0ac0ab22201b50e1f): docs: record daily Vercel review and pause unconfigured GitHub Pages publishing
+- **Reminder:** update `PROJECT_CONTEXT.md` / `CHANGELOG.md` manually for new design decisions or deployment changes.
