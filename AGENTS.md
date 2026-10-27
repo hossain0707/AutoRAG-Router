@@ -53,3 +53,7 @@ Develop an independent, professionally documented **task-adaptive RAG routing fr
 ## How to continue
 
 In a new session: **“Read the complete `PROJECT_CONTEXT.md`, `AGENTS.md`, `CHANGELOG.md`, `docs/DAILY_LOG.md`, and `docs/WORKFLOW.md` on `hossain0707/AutoRAG-Router`. Then inspect fresh GitHub and Vercel state. Continue the next priority without losing implementation details; after completing work, draft changes to these Markdown files; never commit or push without my explicit approval.”**
+
+## Benchmark pipeline (2026-10-28)
+
+The optional `benchmarks/` subpackage evaluates the real Python engine and light fixed baselines. Its toy tests do not prove scientific superiority; check `benchmarks/README.md`, labeled datasets and model/hardware provenance before claims. Never commit checkpoint weights, benchmark corpora, answer logs or credentials. Keep ChatGPT Project Sources as the owner-selected persistent memory location; prepare downloadable memory replacements for user upload. Owner authorization for this specific benchmark commit does not authorize unattended future pushes or deployments.

@@ -12,3 +12,11 @@ build/
 .coverage
 *.sqlite*
 .DS_Store
+
+# Local benchmarking datasets, checkpoints, model weights and results
+benchmarks/runs/
+benchmarks/data/
+benchmarks/models/
+benchmarks/cache/
+*.safetensors
+*.gguf

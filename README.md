@@ -197,6 +197,12 @@ The public demo has **no backend, account management or persistent storage** and
 
 For full details, see [architecture and threat model](docs/ARCHITECTURE.md).
 
+## Research benchmarking — optional, local-only
+
+The [isolated benchmark harness](benchmarks/README.md) compares the **actual Python AutoRAG engine** with fixed BM25 and character-trigram hybrid retrieval, supports BEIR and RAGRouter-Bench input formats, source-level relevance metrics, resumable experiments and an optional **loopback-only** Qwen/vLLM answer-generation stage on a DGX Spark. It does **not** download models, run cloud APIs or automatically deploy anything. Benchmark datasets, weights and run outputs remain local.
+
+**Status:** reproducible evaluation foundation and synthetic offline smoke tests; **no real DGX Spark or full scientific benchmark results are claimed**. Full GraphRAG, iterative-RAG and neural retriever parity, large-corpus optimizations, model deployment and held-out evaluations remain planned. No automatic GitHub pushes or Vercel deployment are configured for benchmark runs.
+
 ## Roadmap
 
 - **Neural retrieval and reranking:** plug-in embeddings, Qdrant/pgvector, BGE or equivalent.

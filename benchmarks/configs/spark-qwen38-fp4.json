@@ -1,0 +1,13 @@
+{
+  "hardware": "DGX Spark 128 GB unified memory",
+  "model": "nvidia/Qwen3.8-Flash-Next-FP4-Local",
+  "local_endpoint": "http://127.0.0.1:8001/v1",
+  "reference": "https://huggingface.co/nvidia/Qwen3.8-Flash-Next-FP4-Local",
+  "nvidia_recipe": "https://build.nvidia.com/spark/vllm/intermediate",
+  "minimum_checkpoint_disk_gib_approx": 96,
+  "max_output_tokens": 256,
+  "temperature": 0,
+  "model_downloaded": false,
+  "model_verified_on_user_spark": false,
+  "important": "This is documentation, not an executable deployment spec. Use the NVIDIA-matched Spark vLLM image and launch flags from the current model card; ordinary upstream vLLM may not load the NVFP4 format. Verify port and model name locally. No model download or cloud billing is performed by the benchmark package."
+}

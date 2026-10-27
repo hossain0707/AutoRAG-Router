@@ -4,6 +4,14 @@ This file records **why** functionality changed, what was **added / changed / re
 
 ## [Unreleased]
 
+### Added — 2026-10-28
+
+- Isolated `benchmarks/` evaluation package with toy/BEIR/RAGRouter-Bench dataset adapters, provenance-preserving chunking, actual engine and fixed lexical baselines, opt-in loopback-only Qwen/vLLM client, retrieval/routing/lexical-answer metrics, resumable run fingerprints and JSON/Markdown reports.
+- Added benchmark regression tests and a synthetic, offline CI smoke/report step. Initial local validation on x86_64 Python: 24 tests passed, Python compilation and JS syntax checks passed; one 15-evaluation synthetic run completed. **DGX Spark, Qwen model inference, external benchmark runs and full GraphRAG/IterativeRAG parity have not been tested or claimed.**
+- Benchmark instructions, hardware checks and source documentation. No model weights or datasets committed. No GitHub auto-push workflow, Vercel deployment or production API alteration.
+
+
+
 ### Changed — 2026-10-27 (owner instruction)
 
 - **Disabled all automatic journal commits and pushes.** The journal workflow is manual-dispatch only, requests read-only repository permission, and previews changes without committing or pushing.

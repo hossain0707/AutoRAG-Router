@@ -19,3 +19,7 @@ jobs:
       - run: python -m pip install -e '.[dev]'
       - run: python -m pytest -q
       - run: python -m compileall -q autorag
+      - name: Offline benchmark diagnostic and report
+        run: |
+          python -m benchmarks.run --dataset toy --out benchmarks/runs/ci-toy
+          python -m benchmarks.report --run-dir benchmarks/runs/ci-toy

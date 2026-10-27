@@ -169,3 +169,11 @@ For optional Docker: configure a private `AUTORAG_API_KEY` in `.env` based on `.
 **Initial task text:** “Continue AutoRAG Router from GitHub. Read all of `PROJECT_CONTEXT.md`, `AGENTS.md`, `CHANGELOG.md`, `docs/DAILY_LOG.md` and `docs/WORKFLOW.md`; verify current `main`, API tests and Vercel deployment; report actual completed work, outstanding risks and next steps before making changes. After work, prepare changes and request my explicit authorization before any GitHub commit/push.”
 
 **Do not infer:** a successful web demo means Python backend production readiness, routing confidence is calibrated probability, the API uses an LLM, new Vercel deployment follows GitHub pushes, or all research claims are established.
+
+## 2026-10-28 — Research benchmark preparation (owner-authorized source change)
+
+- New independent `benchmarks/` package in the same repository: BEIR and RAGRouter-Bench loaders, toy diagnostic, actual AutoRAGEngine adapter with frozen corpus, fixed BM25/hybrid references, retrieval/routing/lexical answer scores, optional local loopback Qwen/vLLM generation, manifest fingerprints, resume logic, Spark read-only checks and Markdown/JSON reporting.
+- Scientific limitation: a lightweight retrieval pilot harness, **NOT** a completed full RAGRouter-Bench competition. No neural dense baseline, full GraphRAG, iterative-RAG parity, real Spark inference, large-corpus acceleration or scientific novelty claim has been established.
+- Locally observed (x86_64, CPU; NOT DGX Spark): 24 Python tests passed including 8 new benchmark tests; `compileall`, `node --check`, toy run and report succeeded. Rerun on current GitHub main/CI and on Spark before stating production/research readiness.
+- Dataset and model weights must stay local and gitignored. No unattended GitHub commits/pushes or Vercel deployment are authorized. All future remote writes need distinct user approval.
+- **For cross-chat memory**, update the owner's ChatGPT Project Sources `PROJECT_MEMORY.md` snapshot (deliver downloadable file for user to add/replace), not an automatic GitHub memory-publishing job.
