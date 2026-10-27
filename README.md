@@ -9,10 +9,10 @@
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3670A0?logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/API-FastAPI-00897B?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![CI](https://github.com/hossain0707/AutoRAG-Router/actions/workflows/ci.yml/badge.svg)](https://github.com/hossain0707/AutoRAG-Router/actions/workflows/ci.yml)
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Interactive_Routing_Lab-30BCCB)](https://hossain0707.github.io/AutoRAG-Router/)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Interactive_Routing_Lab-30BCCB)](https://autorag-router-demo.vercel.app/)
 [![License](https://img.shields.io/badge/License-Personal_Noncommercial-F3C775)](LICENSE)
 
-**[▶ Open the live interactive demo](https://hossain0707.github.io/AutoRAG-Router/)** &nbsp; · &nbsp; **[Watch real app walkthrough](assets/real-router-walkthrough.mp4)** &nbsp; · &nbsp; [Run locally](#quick-start) &nbsp; · &nbsp; [Architecture](#architecture) &nbsp; · &nbsp; [License](#license--commercial-use)
+**[▶ Open the live interactive demo](https://autorag-router-demo.vercel.app/)** &nbsp; · &nbsp; **[Watch real app walkthrough](assets/real-router-walkthrough.mp4)** &nbsp; · &nbsp; [Run locally](#quick-start) &nbsp; · &nbsp; [Architecture](#architecture) &nbsp; · &nbsp; [License](#license--commercial-use)
 
 <img src="assets/real-router-walkthrough.gif" width="100%" alt="Real browser recording: AutoRAG Router switching among graph, structured, multimodal, agentic, hybrid and no-retrieval strategies, displaying actual matching source evidence." />
 
@@ -33,15 +33,15 @@ It provides a **runnable Python API** and a **standalone interactive browser dem
 ### See it work, not just read about it
 
 <div align="center">
-<a href="https://hossain0707.github.io/AutoRAG-Router/"><img src="assets/real-routing-preview.png" alt="Screenshot captured from the real AutoRAG Router interactive routing dashboard" width="92%"></a>
+<a href="https://autorag-router-demo.vercel.app/"><img src="assets/real-routing-preview.png" alt="Screenshot captured from the real AutoRAG Router interactive routing dashboard" width="92%"></a>
 
-[**Launch interactive live demo →**](https://hossain0707.github.io/AutoRAG-Router/) · [View GitHub Pages deployment](https://github.com/hossain0707/AutoRAG-Router/actions/workflows/pages.yml) · [Download recorded walkthrough](assets/real-router-walkthrough.mp4)
+[**Launch interactive live demo →**](https://autorag-router-demo.vercel.app/) · [View Vercel deployment](https://vercel.com/najmuleee1996-6229s-projects/autorag-router-demo) · [Download recorded walkthrough](assets/real-router-walkthrough.mp4)
 
 </div>
 
 The live lab lets you type your own question, run automatic routing, inspect each strategy, review supporting snippets and scores, see fallback/verification events, and add custom text to its **in-memory** knowledge base. Your entered text remains in the browser; do not enter confidential data.
 
-> **Important:** GitHub Pages serves a static browser-only sandbox: it does not expose a hosted vector database, cloud LLM or the Python backend. The live lab executes actual browser-side routing and lexical retrieval logic, not a decorative click-through simulation. To exercise the Python REST API, [run it locally](#quick-start).
+> **Important:** The public Vercel demo serves a static browser-only sandbox: it does not expose a hosted vector database, cloud LLM or the Python backend. The live lab executes actual browser-side routing and lexical retrieval logic, not a decorative click-through simulation. To exercise the Python REST API, [run it locally](#quick-start).
 
 ## Key capabilities
 
@@ -133,7 +133,7 @@ Add `-H 'x-api-key: YOUR_KEY'` when `AUTORAG_API_KEY` is configured. The respons
 
 ### Try the demo without Python or Docker
 
-The GitHub Pages demo is plain HTML + CSS + vanilla JavaScript. You can also open the checked-in `docs/index.html` in a local web browser. No server-side installation or API key is required for that preview. It operates on its own **in-memory** example data.
+The public Vercel demo is plain HTML + CSS + vanilla JavaScript. You can also open the checked-in `docs/index.html` in a local web browser. No server-side installation or API key is required for that preview. It operates on its own **in-memory** example data.
 
 ## Repository guide
 
@@ -173,7 +173,7 @@ python -m compileall -q autorag
 node --check docs/app.js
 ```
 
-The Python tests cover task routing, strategy overrides, retrieval, fallback, persistence, isolation, filters, FastAPI requests and API key handling. The static demonstration is also exercised in Chromium against example scenarios. CI runs Python tests; the Pages workflow publishes the browser demo when GitHub Pages is enabled.
+The Python tests cover task routing, strategy overrides, retrieval, fallback, persistence, isolation, filters, FastAPI requests and API key handling. The static demonstration is also exercised in Chromium against example scenarios. CI runs Python tests; the separate Pages workflow is available as an optional hosting alternative.
 
 To regenerate the **real** UI GIF and MP4 (requires Chromium, `playwright` and `ffmpeg`):
 
@@ -219,6 +219,6 @@ AutoRAG Router is **free for individual personal, educational and other noncomme
 
 **Designed and maintained by [Md Najmul Hossain](https://github.com/hossain0707)**
 
-[Explore the interactive lab](https://hossain0707.github.io/AutoRAG-Router/) · [Browse the source](https://github.com/hossain0707/AutoRAG-Router) · [Read the noncommercial license](LICENSE)
+[Explore the interactive lab](https://autorag-router-demo.vercel.app/) · [Browse the source](https://github.com/hossain0707/AutoRAG-Router) · [Read the noncommercial license](LICENSE)
 
 </div>
