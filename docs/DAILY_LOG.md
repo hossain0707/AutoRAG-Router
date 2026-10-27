@@ -16,3 +16,22 @@ The record tracks observed added, modified, deleted and renamed paths from one p
 ---
 
 <!-- Machine-generated entries are appended below. Preserve this history. -->
+
+### Auto-captured 2026-10-27 — push
+
+- **Compared commits:** `6e8add7df409` → `0ec370148d11`
+- **Record source:** Git file history (`main` checkout); not a live deployment check.
+- **Files changed:** 8 path events.
+- **Added (7):**
+  - `.github/workflows/daily-project-journal.yml`
+  - `AGENTS.md`
+  - `CHANGELOG.md`
+  - `PROJECT_CONTEXT.md`
+  - `docs/WORKFLOW.md`
+  - `scripts/update_daily_log.py`
+  - `tests/test_daily_journal.py`
+- **Modified (1):**
+  - `README.md`
+- **Commits observed:**
+  - [`0ec370148d`](https://github.com/hossain0707/AutoRAG-Router/commit/0ec370148d110043dce3a94cfc69b855f607d8d0): docs: establish canonical project handover and automated daily source journal
+- **Reminder:** update `PROJECT_CONTEXT.md` / `CHANGELOG.md` manually for new design decisions or deployment changes.
