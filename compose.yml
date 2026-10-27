@@ -1,0 +1,17 @@
+services:
+  autorag:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      AUTORAG_DB: /app/data/autorag.db
+      AUTORAG_API_KEY: ${AUTORAG_API_KEY:?Set AUTORAG_API_KEY in .env}
+    volumes:
+      - autorag_data:/app/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+volumes:
+  autorag_data:

@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "autorag-router"
+version = "0.1.0"
+description = "Task-adaptive, evidence-aware retrieval orchestration with a local-first API"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "Md Najmul Hossain"}]
+dependencies = ["fastapi>=0.110,<1", "uvicorn>=0.29,<1", "pydantic>=2.5,<3"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "httpx>=0.27,<1", "ruff>=0.9,<1"]
+
+[project.scripts]
+autorag = "autorag.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["autorag*"]
+
+[tool.setuptools.package-data]
+autorag = ["static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
