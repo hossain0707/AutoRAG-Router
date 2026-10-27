@@ -12,6 +12,8 @@
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Interactive_Routing_Lab-30BCCB)](https://autorag-router-demo.vercel.app/)
 [![License](https://img.shields.io/badge/License-Personal_Noncommercial-F3C775)](LICENSE)
 
+**[📚 Project handover](PROJECT_CONTEXT.md)** &nbsp; · &nbsp; **[Development journal](docs/DAILY_LOG.md)** &nbsp; · &nbsp; [Continuity workflow](docs/WORKFLOW.md)
+
 **[▶ Open the live interactive demo](https://autorag-router-demo.vercel.app/)** &nbsp; · &nbsp; **[Watch real app walkthrough](assets/real-router-walkthrough.mp4)** &nbsp; · &nbsp; [Run locally](#quick-start) &nbsp; · &nbsp; [Architecture](#architecture) &nbsp; · &nbsp; [License](#license--commercial-use)
 
 <img src="assets/real-router-walkthrough.gif" width="100%" alt="Real browser recording: AutoRAG Router switching among graph, structured, multimodal, agentic, hybrid and no-retrieval strategies, displaying actual matching source evidence." />
@@ -21,6 +23,10 @@
 </div>
 
 ---
+
+## Continue in a new ChatGPT or coding-agent session
+
+Start with **[PROJECT_CONTEXT.md](PROJECT_CONTEXT.md)** and **[AGENTS.md](AGENTS.md)**, then read the **[human changelog](CHANGELOG.md)**, **[daily change journal](docs/DAILY_LOG.md)** and **[workflow](docs/WORKFLOW.md)**. The journal captures verified Git additions, modifications, removals and renames through an automated GitHub Actions workflow. Deployment status and architectural decisions must also be verified and written by the agent after relevant changes.
 
 ## What is AutoRAG Router?
 
@@ -105,7 +111,7 @@ autorag serve
 
 Open **http://127.0.0.1:8000** for the local Python-powered dashboard and **http://127.0.0.1:8000/docs** for Swagger/OpenAPI.
 
-**Note:** the public GitHub Pages lab and Python API dashboard are separate frontends. Use the API dashboard when you want queries to execute on your locally installed Python service.
+**Note:** the public Vercel lab and Python API dashboard are separate frontends. Use the API dashboard when you want queries to execute on your locally installed Python service.
 
 ### Docker Compose
 

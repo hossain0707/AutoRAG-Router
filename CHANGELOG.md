@@ -1,0 +1,61 @@
+# AutoRAG Router — Human-Curated Changelog
+
+This file records **why** functionality changed, what was **added / changed / removed**, impact, verification, and follow-up. For every commit-level file list, use the [automatically generated daily Git log](docs/DAILY_LOG.md); it is not a substitute for this editorial history.
+
+## [Unreleased]
+
+### Added — 2026-10-27
+
+- Canonical cross-chat project handover (`PROJECT_CONTEXT.md`) and agent rules (`AGENTS.md`).
+- Documented workflow for maintaining project decisions, cloud resource identifiers, limitations and quality evidence (`docs/WORKFLOW.md`).
+- Scheduled GitHub Actions journal and incremental Git diff recorder (`.github/workflows/daily-project-journal.yml`, `scripts/update_daily_log.py`, `docs/DAILY_LOG.md`).
+- Automated tests for journaling and file-change classification (`tests/test_daily_journal.py`).
+
+### Changed
+
+- README now links new developers to the canonical handover and history. Future meaningful modifications must update both code and relevant context records.
+
+### Limitations
+
+- Journal only sees Git content/history, not changes made directly in Vercel or external infrastructure; those require live verification and human/agent annotation.
+- Scheduled workflow execution depends on GitHub Actions being enabled and having permission to push journal updates to `main`. If CI is disabled or protected branches block `GITHUB_TOKEN`, configure permissions/review the run logs.
+
+## [0.1.0 developer preview] — 2026-10-27
+
+### Added
+
+- Task-adaptive deterministic `no_rag`, `hybrid`, `graph`, `agentic`, `multimodal` and `structured` routing; API and local SQLite store.
+- BM25 + character-trigram lexical/fuzzy fusion; tagged-entity graph lookup; bounded query decomposition; metadata-based structured retrieval; extractive evidence and fallback.
+- FastAPI, CLI, local dashboard, Docker Compose, initial Python tests and CI workflow. **16 local tests passed at release time.**
+- Architecture and API documentation, animated demos, conceptual promo video.
+- Live interactive static HTML/CSS/JavaScript browser demo with actual local policy execution and seven synthetic source records; real UI-recorded MP4, GIF and screenshot.
+- GitHub Pages workflow as an optional deployment method; Vercel project `autorag-router-demo` deployed as public static site with production `READY` snapshot.
+
+### Changed
+
+- Changed current repository distribution license from **MIT** to **Personal Noncommercial License v1.0**. Individual noncommercial use permitted; commercial use requires separately negotiated written permission. The new license does not retroactively revoke earlier valid MIT grants.
+- Changed README Live Demo links from unconfigured GitHub Pages to `https://autorag-router-demo.vercel.app/` after Pages returned “Site not found.”
+
+### Removed / replaced
+
+- Removed **MIT licensing from current main**, replacing it with the noncommercial license (historically granted MIT rights remain applicable to earlier distributions).
+- Replaced the **broken GitHub Pages link as the primary Live Demo destination** with Vercel. The optional Pages publishing workflow remains in repository.
+
+### Verification and known issues
+
+- Local Python tests: 16 passed at first release. Live browser test: page + JavaScript loaded; Graph sample returned three evidence passages; Structured revenue sample selected correct strategy and showed results/traces.
+- **Open issue:** Structured revenue retrieval returns unrelated results with misleadingly high scores; quality and calibration fixes are needed.
+- Vercel demo does not host a Python API, LLM, vector index, external graph DB or real image understanding. CI status and deployment parity must be rechecked for each revision.
+
+### Commits (2026-10-27)
+
+- [`8edcdce`](https://github.com/hossain0707/AutoRAG-Router/commit/8edcdce2ce26cb5a948fdb82a5b9dfc5ffc6474a) — repository initialization.
+- [`e9bddf2`](https://github.com/hossain0707/AutoRAG-Router/commit/e9bddf2d39356375240f8f21c50bae4ca30b5f76) — temporary source unpack workflow.
+- [`201b605`](https://github.com/hossain0707/AutoRAG-Router/commit/201b605a126a8fa6b78952cf8f13bb4d8f1634dd) — staged source bundle.
+- [`fd1648e`](https://github.com/hossain0707/AutoRAG-Router/commit/fd1648e60dd8da4d043c8fccba14b0db99ee0ba7) — first tested package and README.
+- [`db7d6a1`](https://github.com/hossain0707/AutoRAG-Router/commit/db7d6a11065849ccbb6ba1be09b3fa90f9debd7e) — animated GIF.
+- [`1dd8e07`](https://github.com/hossain0707/AutoRAG-Router/commit/1dd8e074fba3a8beb21e40c384b059b5eabe495c) — promo video.
+- [`a388469`](https://github.com/hossain0707/AutoRAG-Router/commit/a388469b8950baf9522400eeb744ef42401a38f3) — live browser demo + real animation + noncommercial license.
+- [`6e8add7`](https://github.com/hossain0707/AutoRAG-Router/commit/6e8add7df409a8b6fe47776922f5a39acb97babe) — README links corrected to Vercel.
+
+**How to update this file:** add each substantial change under Unreleased with date, rationale, behavior change, testing, security consequences and a source commit/PR URL. At a version release, move Unreleased entries into a new dated version section, and keep all earlier history.
