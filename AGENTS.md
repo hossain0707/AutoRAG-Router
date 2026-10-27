@@ -14,6 +14,10 @@ Develop an independent, professionally documented **task-adaptive RAG routing fr
 4. `docs/DAILY_LOG.md` records mechanically observed Git changes. Auto-generated summaries **do not replace** documentation of design intent.
 5. External ChatGPT memory, screenshots, older chat claims or marketing materials may be stale. Reconcile any conflict rather than copying it blindly.
 
+## Owner policy — NO AUTOMATIC GITHUB WRITES (2026-10-27)
+
+**Never commit, push, merge, write GitHub files, publish releases, trigger a write-enabled workflow, or deploy automatically.** The owner requires **explicit approval for each GitHub write**. Read-only scheduled checks and reporting are permitted. Work may be drafted locally, with proposed changes shown to the owner for approval. This policy supersedes previous daily-sync and journal write instructions.
+
 ## Non-negotiables
 
 - Never make up capabilities, metrics, benchmark wins, link availability or successful deployments.
@@ -32,9 +36,9 @@ Develop an independent, professionally documented **task-adaptive RAG routing fr
 2. Make a focused change and test; cite measured evidence and known limitations.
 3. Update `PROJECT_CONTEXT.md` if architecture, deployed state, risk, next action or key design decision changed.
 4. Update `CHANGELOG.md` for feature, security, interface, licensing, workflow or deployment changes. Mark removed functionality explicitly.
-5. Commit related code + docs atomically when practical; `docs/DAILY_LOG.md` is maintained by the journal workflow and must not be manually rewritten except for repair/backfill.
-6. Verify commit URL, CI and any production URL; never assume green status.
-7. Leave a clear next-step handover suitable for a completely new chat without prior messages.
+5. Prepare related code + documentation together, but **do not commit or push without explicit user authorization for the specific change**. The historical `docs/DAILY_LOG.md` is no longer auto-committed.
+6. Only if the owner approves a GitHub write: commit, then verify the resulting commit URL, CI and any production URL; never assume green status.
+7. Leave a clear next-step handover suitable for a completely new chat without prior messages; report proposed source changes without writing remotely unless approved.
 
 ## Reviewer checklist for next chat
 
@@ -44,8 +48,8 @@ Develop an independent, professionally documented **task-adaptive RAG routing fr
 - Has Structured RAG precision improved? Previously irrelevant documents were returned with high scores.
 - Have metadata/schema and tenant auth/security controls changed?
 - Is the license still personal-noncommercial? Are commercial permissions documented separately?
-- Is the latest change recorded in `PROJECT_CONTEXT.md`, `CHANGELOG.md` and, after scheduled execution, `docs/DAILY_LOG.md`?
+- Is the latest change recorded in `PROJECT_CONTEXT.md`, `CHANGELOG.md` and, if manually approved, `docs/DAILY_LOG.md`?
 
 ## How to continue
 
-In a new session: **“Read the complete `PROJECT_CONTEXT.md`, `AGENTS.md`, `CHANGELOG.md`, `docs/DAILY_LOG.md`, and `docs/WORKFLOW.md` on `hossain0707/AutoRAG-Router`. Then inspect fresh GitHub and Vercel state. Continue the next priority without losing implementation details; after completing work, update these Markdown handover files and commit.”**
+In a new session: **“Read the complete `PROJECT_CONTEXT.md`, `AGENTS.md`, `CHANGELOG.md`, `docs/DAILY_LOG.md`, and `docs/WORKFLOW.md` on `hossain0707/AutoRAG-Router`. Then inspect fresh GitHub and Vercel state. Continue the next priority without losing implementation details; after completing work, draft changes to these Markdown files; never commit or push without my explicit approval.”**

@@ -1,8 +1,15 @@
 # AutoRAG Router — Human-Curated Changelog
 
-This file records **why** functionality changed, what was **added / changed / removed**, impact, verification, and follow-up. For every commit-level file list, use the [automatically generated daily Git log](docs/DAILY_LOG.md); it is not a substitute for this editorial history.
+This file records **why** functionality changed, what was **added / changed / removed**, impact, verification, and follow-up. For historical commit-level file lists, see the [previously generated Git journal](docs/DAILY_LOG.md); it is not a substitute for this editorial history.
 
 ## [Unreleased]
+
+### Changed — 2026-10-27 (owner instruction)
+
+- **Disabled all automatic journal commits and pushes.** The journal workflow is manual-dispatch only, requests read-only repository permission, and previews changes without committing or pushing.
+- Updated daily ChatGPT AutoRAG review to read-only reporting; it may not modify GitHub or Vercel.
+- Future repository edits, documentation commits and deployments require the owner's explicit case-by-case authorization. Preserved all historical journal entries and source files; regular CI still runs tests on pushes but does not publish files.
+
 
 ### Added — 2026-10-27
 
@@ -20,7 +27,7 @@ This file records **why** functionality changed, what was **added / changed / re
 ### Limitations
 
 - Journal only sees Git content/history, not changes made directly in Vercel or external infrastructure; those require live verification and human/agent annotation.
-- Scheduled workflow execution depends on GitHub Actions being enabled and having permission to push journal updates to `main`. If CI is disabled or protected branches block `GITHUB_TOKEN`, configure permissions/review the run logs.
+- **Superseded:** the original daily push-enabled journal was disabled by owner request on 2026-10-27. There are no authorized scheduled journal pushes.
 
 ## [0.1.0 developer preview] — 2026-10-27
 

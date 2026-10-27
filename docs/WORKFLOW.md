@@ -1,68 +1,65 @@
-# AutoRAG Router — Change Management and Continuity Workflow
+# AutoRAG Router — Change Management and Continuity
 
-**Purpose:** make project context durable across ChatGPT chats, Codex sessions, cloud machines, contributors and deployments. Public repository: https://github.com/hossain0707/AutoRAG-Router.
+Last updated: **2026-10-27**. Repository: https://github.com/hossain0707/AutoRAG-Router.
 
-## Files and ownership
+## Binding owner preference: no automatic GitHub writes
 
-| File | Responsibility | How updated |
+**Never automatically commit, push, merge, publish releases, deploy, or change remote files.** GitHub writes require an explicit request or approval from the owner for the particular change. The earlier daily automatic GitHub journal was disabled on 2026-10-27. Existing records remain preserved.
+
+Read-only daily status checking and reporting may continue. Reviewers should prepare changes locally and present them for approval before any GitHub write. This rule overrides any old instructions in past chats.
+
+## Source-of-truth files
+
+| File | Meaning | Update rule |
 | --- | --- | --- |
-| [`../PROJECT_CONTEXT.md`](../PROJECT_CONTEXT.md) | Product goal, architecture, current reality, deployment identifiers and evidence, open problems, next actions | A human or agent **after every material change**, with verification |
-| [`../AGENTS.md`](../AGENTS.md) | Mandatory instructions to any new agent | Human-reviewed when policies change |
-| [`../CHANGELOG.md`](../CHANGELOG.md) | Why/what changes, improvements/removals, version/release notes | With every user-impacting change |
-| [`DAILY_LOG.md`](DAILY_LOG.md) | Git-derived file/commit change log; dates and added/changed/deleted/renamed files | GitHub Action on `main` pushes and **daily** |
-| [`.journal-state.json`](.journal-state.json) | Git commit cursor for incremental journal | Script-owned; do not edit manually except to recover |
-| [`../README.md`](../README.md) | Public-facing installation/architecture/demo and license terms | With functionality or release changes |
-| [`ARCHITECTURE.md`](ARCHITECTURE.md) | Engineering architecture/security limits | With substantive design/security changes |
+| [PROJECT_CONTEXT.md](../PROJECT_CONTEXT.md) | Full project history, owner decisions, verified account identifiers, risks and next steps | Draft when material facts change; publish only on explicit request |
+| [AGENTS.md](../AGENTS.md) | Rules for all coding agents and future chats | Owner-approved updates only |
+| [CHANGELOG.md](../CHANGELOG.md) | Human-readable added/changed/fixed/removed records | Alongside explicitly approved substantive changes |
+| [DAILY_LOG.md](DAILY_LOG.md) | Historical Git-derived file/commit journal | No scheduled commits; update only if owner requests |
+| [.journal-state.json](.journal-state.json) | Incremental journal cursor | Keep with journal; do not rewrite without checking ancestry |
+| [../README.md](../README.md) | Installation, implementation limitations, links, license | Update with an owner-approved release |
+| [ARCHITECTURE.md](ARCHITECTURE.md) | Technical design and threat model | Update with an owner-approved technical change |
 
-## Daily scheduled change capture
+## Journal: manual preview, never push
 
-Workflow: `.github/workflows/daily-project-journal.yml`, script `scripts/update_daily_log.py`. Schedule: `0 0 * * *` UTC = **09:00 Asia/Seoul** daily (GitHub schedule may be delayed); also runs on pushes to `main`, and allows manual `workflow_dispatch`.
+`.github/workflows/daily-project-journal.yml` **no longer has `push` or `schedule` triggers** and uses `contents: read`. It can run via an intentionally requested `workflow_dispatch`. That runner generates a **temporary local preview** using `scripts/update_daily_log.py`, prints a summary, and finishes **without committing or pushing**.
 
-Script workflow:
+To preview locally in a full Git checkout:
 
-1. Checkout complete `main` history and read `docs/.journal-state.json` as the previous processed Git SHA.
-2. Compare **previous SHA → current HEAD**, excluding journal-managed files, and classify added (`A`), modified (`M`), deleted (`D`) and renamed (`R`) paths.
-3. Record actual commit summaries, source SHA range, and dated results in `docs/DAILY_LOG.md`.
-4. If no source changes occurred, record a daily **no-source-change** entry instead of inventing work.
-5. Update cursor and commit/push changes back to `main` using the repository's GitHub Actions token.
+```bash
+python scripts/update_daily_log.py --repo . --event manual_preview
+git diff -- docs/DAILY_LOG.md docs/.journal-state.json
+```
 
-**The journal workflow does not silently deploy Vercel, change the user-facing README, or write subjective architectural conclusions.** It cannot infer intent from diff alone; a human/agent must update `PROJECT_CONTEXT.md` and `CHANGELOG.md` with reasoning. When GitHub Actions is disabled, a workflow run fails, or branch protection disallows writes, journal entries will **not** be created automatically. Inspect workflow history; do not claim continuous tracking without evidence.
+These commands change local working-copy files only. Do not stage, commit or push the output without explicit authorization. Do not enable scheduled or push-triggered publishing without a new owner request.
 
-## Procedure after any source change (applies in every chat)
+## Read-only daily ChatGPT project review
 
-1. Fetch latest GitHub `main`; read `PROJECT_CONTEXT.md`, `AGENTS.md`, `CHANGELOG.md` and the most recent daily log entry before edits.
-2. Record issue/task goal and acceptance criteria. Distinguish verified current behavior vs proposed improvements.
-3. Edit implementation, add regression tests, run Python, JS and relevant browser tests; record failures candidly.
-4. Update `CHANGELOG.md` with date and **Added / Changed / Removed / Fixed / Security / Tests** as appropriate; update `PROJECT_CONTEXT.md` for new verified status, risks and decisions.
-5. Commit, push and verify the SHA. Observe CI, inspect the journal run and check Vercel deployment if changed.
-6. After a deployed frontend modification, test `https://autorag-router-demo.vercel.app/` in a real browser with Graph and Structured scenarios; compare deployed JS/HTML to GitHub `docs/` source.
-7. Do not close the task if the promised public demo or actual runtime behavior has not been verified; clearly state limitations.
+The **AutoRAG daily read-only review** automation may inspect repo files, commits, CI, verified Vercel deployment state and the public demo, then report meaningful differences. It **must not** update source files, commit, push, deploy, trigger write workflows or modify cloud settings. It is informational, not self-updating project memory.
 
-## Independent daily deployment/status review
+## Workflow for future changes
 
-A ChatGPT automation named **AutoRAG daily project sync** was enabled on 2026-10-27 with a flexible daily schedule around **10:00 Asia/Seoul**, starting 2026-10-28. It reads current GitHub/Vercel state and the handover. It may reconcile **verified** changes into `PROJECT_CONTEXT.md` / `CHANGELOG.md` and send a concise update, but must not change deployed code, commercial license, provider configuration or secrets. Execution and write success are contingent on connected app authorization; **check the automation result** rather than assuming updates happened. The GitHub Actions journal remains the independent, automatically verified source-change recorder.
+1. Read `PROJECT_CONTEXT.md`, `AGENTS.md`, `CHANGELOG.md`, the latest journal and implementation before proposing changes.
+2. Inspect the current GitHub `main` revision, existing tests and Vercel deployment when relevant. Do not assume old statuses remain true.
+3. Plan and implement requested changes in a draft/local workspace; add regression tests and run applicable checks.
+4. Prepare a changelog and context update to accompany the change. Explain added, changed, removed or broken features.
+5. **Only after explicit owner authorization for GitHub writes**, create a commit/push; report exact commit SHA and verify CI results.
+6. **Only after separate approval if deployment is needed**, deploy and verify the public URL with real browser interactions. A GitHub push alone does not automatically redeploy Vercel.
+7. If the user only asks to review, explain or suggest, do not push code.
 
-## Deployment reality and reproducibility
+## GitHub and Vercel identifiers (non-secret)
 
-- `README.md` Live Demo: https://autorag-router-demo.vercel.app/
-- Vercel project ID: `prj_dm2L1KNIrOUEX9it40yaUpyMgF30`; team ID: `team_ld0IOXvEO5BtaXuCppcBNKHJ`.
-- Last verified production snapshot: `dpl_EoAEbCTLC3F5yJg1WWTZ2w6Evuiy` (`READY`, 2026-10-27).
-- Source in last Vercel deployment: `src/index.html`, `src/app.js`, `src/styles.css`; repository browser demo source: `docs/index.html`, `docs/app.js`, `docs/styles.css`.
-- Dashboard screenshot indicated **Connect Git Repository** and deployment source `vercel deploy`. As of that verification, auto-deploy from GitHub pushes **was not established**.
-- GitHub Pages URL previously failed, and the 2026-10-27 `Configure GitHub Pages` action returned `Get Pages site failed: Not Found`. Optional `.github/workflows/pages.yml` is **manual-only** until the owner enables GitHub Pages; this does not affect the Vercel demo.
-- Deployment secrets must be set only through protected Vercel/GitHub secret storage. Do not store personal session/cookies or tokens in Markdown.
+- GitHub repository: https://github.com/hossain0707/AutoRAG-Router, branch `main`.
+- Vercel project: `autorag-router-demo`; project ID `prj_dm2L1KNIrOUEX9it40yaUpyMgF30`; team ID `team_ld0IOXvEO5BtaXuCppcBNKHJ`.
+- Vercel dashboard: https://vercel.com/najmuleee1996-6229s-projects/autorag-router-demo
+- Production demo: https://autorag-router-demo.vercel.app/
+- Last verified Vercel production deployment (2026-10-27): `dpl_EoAEbCTLC3F5yJg1WWTZ2w6Evuiy`, `READY`. Re-check before relying on it.
+- Public Vercel site is a **browser-side JavaScript demo**; the local Python FastAPI backend is not hosted there.
+- Last observed Vercel deployment files: `src/index.html`, `src/app.js`, `src/styles.css`. GitHub's source files are under `docs/`; automatic synchronization to Vercel is **not established**.
+- Optional GitHub Pages workflow remains manual-only and the Pages URL was previously unavailable.
 
-To deploy a revised demo: (a) verify project/team identity; (b) link the correct GitHub source/build root if approved, or explicitly deploy the `docs/` static directory via authenticated Vercel tool/CLI; (c) inspect the new deployment state, alias and files; (d) run real browser smoke tests; (e) update the canonical context with observed deployment SHA/URL and test result. Git commit alone is NOT deployment verification.
+Never store GitHub tokens, Vercel credentials, `.env` values or private user data in public handover files.
 
-## Recovery from a broken daily journal
+## Ready-to-use prompt for a new chat
 
-- Open https://github.com/hossain0707/AutoRAG-Router/actions/workflows/daily-project-journal.yml and examine latest failure.
-- Confirm GitHub Actions is enabled and `GITHUB_TOKEN` has `contents: write` and branch allows bot commits; if branch protections disallow it, use an approved PR-based strategy rather than bypassing security.
-- Script can run manually from a **real Git clone**: `python scripts/update_daily_log.py --repo .`. Commit the produced `docs/DAILY_LOG.md` and `docs/.journal-state.json` together.
-- Do not delete/reinitialize the cursor unless intentionally backfilling; it prevents lost/duplicate diff windows.
-- Do not edit existing journal entries to rewrite history. Add corrective entries instead.
-- If the cursor SHA is not available or is no longer an ancestor of HEAD, stop and investigate history rewrites before resuming.
-
-## Default next-session prompt
-
-> Continue `hossain0707/AutoRAG-Router`. Read `PROJECT_CONTEXT.md`, `AGENTS.md`, `CHANGELOG.md`, `docs/DAILY_LOG.md`, `docs/WORKFLOW.md` and code. Check the latest GitHub commits, Actions and current Vercel production deployment. Explain what exists and what remains, perform requested engineering work, run reproducible tests, update those Markdown handover records for any verified changes, and push the changes. Never include secrets or claim nonexistent capabilities.
+> Continue `hossain0707/AutoRAG-Router`. Read `PROJECT_CONTEXT.md`, `AGENTS.md`, `CHANGELOG.md`, `docs/DAILY_LOG.md` and `docs/WORKFLOW.md`, then inspect the current GitHub and Vercel state. Keep all work read-only unless I explicitly authorize the particular GitHub write or deployment. Report accurate findings, prepare changes for my approval, and never automatically commit or push.

@@ -4,12 +4,16 @@
 > Last manually verified: **2026-10-27 (Asia/Seoul)**. Status entries below are a dated snapshot, not a guarantee of perpetual uptime.
 > Owner: **Md Najmul Hossain** · GitHub: **[@hossain0707](https://github.com/hossain0707)** · Project: **AutoRAG-Router** · Version: **0.1.0 developer preview**.
 
+## Owner override — 2026-10-27
+
+**NO AUTOMATIC GITHUB PUSHES OR COMMITS.** The owner withdrew the earlier request for daily automatic GitHub writes. GitHub Actions journal is **manual, read-only preview** only, and the daily ChatGPT automation is **read-only**, allowed to report changes but forbidden to update GitHub or Vercel. Any GitHub change or deployment requires explicit case-by-case user authorization. No scheduled bot commits/pushes. This current directive supersedes earlier references below to auto-maintained files.
+
 ## 0. Continuity protocol — read before editing
 
 1. Read **this entire file**, [`AGENTS.md`](AGENTS.md), [`README.md`](README.md), [`CHANGELOG.md`](CHANGELOG.md), [`docs/DAILY_LOG.md`](docs/DAILY_LOG.md), [`docs/WORKFLOW.md`](docs/WORKFLOW.md) and [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 2. Inspect the **current** `main` branch, actual source, CI, Vercel deployment and recent commits; dated snapshots can become stale. Cross-check claims before repeating them.
 3. State what is implemented vs simulated/demo-only vs planned. Preserve the distinction between **browser demo** and **Python API**.
-4. After **every material change**, update this document if an architectural decision, status, deployment, risk or next action changed. Add a human-understandable entry to `CHANGELOG.md` and ensure tests cover code changes. The automated daily journal tracks actual Git history but **cannot infer intent**.
+4. After **every material change**, update this document if an architectural decision, status, deployment, risk or next action changed. Add a human-understandable entry to `CHANGELOG.md` and ensure tests cover code changes. The historical Git journal can be regenerated manually when requested but **must not automatically commit or push**.
 5. Never put API tokens, login cookies, passwords, `.env` contents, SSH keys, user data or private infrastructure details in this public repository.
 6. Do not claim the GitHub Pages site works unless verified; use the verified Vercel link as the README's Live Demo destination.
 7. New chats should begin with: **“Read `PROJECT_CONTEXT.md`, `AGENTS.md`, `CHANGELOG.md`, and the latest `docs/DAILY_LOG.md` in `hossain0707/AutoRAG-Router`; inspect current GitHub and Vercel state before edits; continue from the open tasks.”**
@@ -39,7 +43,7 @@ Avoid treating GraphRAG, Hybrid, Agentic, Self-RAG and CRAG as mutually exclusiv
 | Production demo | **https://autorag-router-demo.vercel.app/** | The supported README Live Demo link |
 | Production deployment snapshot | `dpl_EoAEbCTLC3F5yJg1WWTZ2w6Evuiy` | `READY` at 2026-10-27 check; may change after redeploys |
 | Deployment inspection | https://vercel.com/najmuleee1996-6229s-projects/autorag-router-demo/EoAEbCTLC3F5yJg1WWTZ2w6Evuiy | Deployment snapshot |
-| GitHub Actions | https://github.com/hossain0707/AutoRAG-Router/actions | CI, optional Pages, and scheduled daily journal |
+| GitHub Actions | https://github.com/hossain0707/AutoRAG-Router/actions | Read-only CI, optional manual Pages, manual-only journal preview (no auto push) |
 | GitHub Pages | https://hossain0707.github.io/AutoRAG-Router/ | **Previously “Site not found”; `pages.yml` failed at Configure GitHub Pages (Get Pages site: Not Found); do NOT use as primary live demo** |
 
 ### Vercel operating facts, verified 2026-10-27
@@ -120,7 +124,7 @@ All events below are **2026-10-27 (Korea local date)**; commit timestamps are UT
 | [`a388469`](https://github.com/hossain0707/AutoRAG-Router/commit/a388469b8950baf9522400eeb744ef42401a38f3) | Added functioning browser demo, real GIF/MP4 and screenshot, changed license to noncommercial, added Pages workflow. |
 | [`6e8add7`](https://github.com/hossain0707/AutoRAG-Router/commit/6e8add7df409a8b6fe47776922f5a39acb97babe) | Fixed all README Live Demo links from broken GitHub Pages address to public Vercel domain. |
 
-User requirements resolved: independent framework rather than hard-coupled NEXUS-100; professional README with authentic animation; public interactive HTML preview; free personal, paid commercial only on contact; verifiable live demo button. User specifically asked for durable cross-chat source context and a **daily automated change record** on 2026-10-27.
+User requirements resolved: independent framework rather than hard-coupled NEXUS-100; professional README with authentic animation; public interactive HTML preview; free personal, paid commercial only on contact; verifiable live demo button. User asked for durable cross-chat source context and initially a daily change record; **later on 2026-10-27 explicitly withdrew authorization for automatic GitHub pushes**. The final owner decision is **read-only monitoring, manual GitHub updates only when explicitly requested**.
 
 ## 7. Next priorities / acceptance criteria
 
@@ -153,15 +157,15 @@ For optional Docker: configure a private `AUTORAG_API_KEY` in `.env` based on `.
 ### Daily and per-change recording
 
 - `CHANGELOG.md`: curated human summary (release-impacting decisions, new features and removals).
-- `docs/DAILY_LOG.md`: **automatically maintained** by `.github/workflows/daily-project-journal.yml` on `main` pushes and daily scheduled runs (subject to GitHub Actions enablement, repository write permissions, workflow success and GitHub scheduler reliability).
+- `docs/DAILY_LOG.md`: historical journal only. No scheduled GitHub writes; optional `.github/workflows/daily-project-journal.yml` can be manually dispatched for an ephemeral read-only preview and does not commit/push. Publish new journal entries only with explicit owner permission.
 - `docs/.journal-state.json`: last inspected Git commit for incremental changelog; this is a machine cursor, not a credential.
 - `scripts/update_daily_log.py`: computes commit and file change summary, including added/modified/deleted/renamed files; records days with no source changes.
 - `AGENTS.md`: behavior contract for any assistant; documentation updates are part of the definition of done.
 - `docs/WORKFLOW.md`: exact operations and recovery instructions.
-- **Daily GitHub file diff cannot observe external Vercel changes or record human intent.** Manually verify production deployments, annotate decisions and update status after a rollout. If an independent scheduled assistant review exists, it must also verify fresh state and use only approved connector credentials.
+- **Daily GitHub file diff cannot observe external Vercel changes or record human intent.** Manually verify production deployments, annotate decisions and update status after a rollout. The independent scheduled assistant review is read-only and cannot write to GitHub, Vercel or any other deployment.
 
 ## 9. Handoff format for the next session
 
-**Initial task text:** “Continue AutoRAG Router from GitHub. Read all of `PROJECT_CONTEXT.md`, `AGENTS.md`, `CHANGELOG.md`, `docs/DAILY_LOG.md` and `docs/WORKFLOW.md`; verify current `main`, API tests and Vercel deployment; report actual completed work, outstanding risks and next steps before making changes. After work, update the relevant Markdown source files and commit them with the code.”
+**Initial task text:** “Continue AutoRAG Router from GitHub. Read all of `PROJECT_CONTEXT.md`, `AGENTS.md`, `CHANGELOG.md`, `docs/DAILY_LOG.md` and `docs/WORKFLOW.md`; verify current `main`, API tests and Vercel deployment; report actual completed work, outstanding risks and next steps before making changes. After work, prepare changes and request my explicit authorization before any GitHub commit/push.”
 
 **Do not infer:** a successful web demo means Python backend production readiness, routing confidence is calibrated probability, the API uses an LLM, new Vercel deployment follows GitHub pushes, or all research claims are established.
