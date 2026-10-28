@@ -2,6 +2,23 @@
 
 Last updated: **2026-10-27**. Repository: https://github.com/hossain0707/AutoRAG-Router.
 
+
+## Current daily GitHub project memory (effective 2026-10-28)
+
+**The active daily memory is project_memory/PROJECT_MEMORY_YYYY-MM-DD.md.** Files are keyed to the HEAD commit date converted to Asia/Seoul (UTC+09:00); the latest daily file contains a complete current-state snapshot, outstanding tasks and multiple separately numbered change records when several pushes occur that day. The old docs/DAILY_LOG.md is retained as a historical machine journal, not the active per-push handover.
+
+For each owner-authorized GitHub change:
+1. Read the last dated memory and verify current source/CI/provider state. Do not assume a previous test or deployment remains valid.
+2. Prepare and test code and other docs. Draft today's daily Markdown file from the current verified snapshot.
+3. Append **one new numbered Change entry per approved push**, with fields KST time; task/reason; added; changed; removed; fixed; tests/evidence; GitHub/deployment; decisions; risks/blockers; next action. Record "None" or "Not tested" where appropriate.
+4. On a second, third or fifth approved push on that date, **edit the exact same file** and append Change 02, Change 03, Change 05, etc. No filename suffix or multiple files for a date. Preserve all previous entries; correct historical errors in today's file instead of silently changing prior days.
+5. Run **python scripts/check_project_memory.py --base HEAD^** or use the read-only CI guard. CI rejects missing/incorrect dates and same-day pushes with no newly appended entry; it cannot confirm factual truth.
+6. Obtain explicit owner approval for the particular GitHub push or any deployment. GitHub CI **never commits/pushes the memory itself**. A file cannot know its containing commit's SHA in advance; verify links after commit and use Git history as proof. A separate follow-up entry can record the SHA with the next approved change.
+
+Only date-stamped Markdown memory files belong inside project_memory/. Keep validation code in scripts/ and tests/. Do not place tokens, customer data, datasets, LLM answers, weights or artifacts in memory. Existing ChatGPT Project Sources attachments do not automatically synchronize with GitHub; update those separately when requested.
+
+Read-only CI command: **python scripts/check_project_memory.py --base <previous-main-sha>** for a push or **--base <pull-request-base-sha>** for a PR. If the repo change spans multiple days, align the latest commit date and the daily file or split the changes into appropriately dated approved pushes. This policy does **not** re-enable the historical scheduled GitHub journal.
+
 ## Binding owner preference: no automatic GitHub writes
 
 **Never automatically commit, push, merge, publish releases, deploy, or change remote files.** GitHub writes require an explicit request or approval from the owner for the particular change. The earlier daily automatic GitHub journal was disabled on 2026-10-27. Existing records remain preserved.

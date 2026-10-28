@@ -23,3 +23,25 @@ jobs:
         run: |
           python -m benchmarks.run --dataset toy --out benchmarks/runs/ci-toy
           python -m benchmarks.report --run-dir benchmarks/runs/ci-toy
+
+  memory:
+    name: Dated project memory (read-only)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify one complete dated memory file and new change entry
+        env:
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PUSH_BEFORE: ${{ github.event.before }}
+        run: |
+          if [ -n "$PR_BASE" ]; then base="$PR_BASE"; else base="$PUSH_BEFORE"; fi
+          if [ -z "$base" ] || [[ "$base" =~ ^0+$ ]]; then base="HEAD^"; fi
+          python scripts/check_project_memory.py --base "$base"

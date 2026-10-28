@@ -4,6 +4,14 @@ This file records **why** functionality changed, what was **added / changed / re
 
 ## [Unreleased]
 
+
+### Added — 2026-10-28 (GitHub daily project memory policy)
+
+- Owner-approved **project_memory/PROJECT_MEMORY_2026-10-28.md**, containing an up-to-date project snapshot, open tasks and separate records of the benchmark delivery and new daily-memory process.
+- Read-only **scripts/check_project_memory.py** and **tests/test_project_memory_policy.py** to check one dated Markdown file per KST day, a fresh numbered entry for each changed push, and preservation of prior-day files. Three local policy tests passed in a temporary Git repository; complete GitHub CI must be verified after this commit.
+- Updated agent, contributor, workflow, README and handover instructions, plus GitHub CI checks. **No scheduled writes, automatic pushes, Vercel deployments, benchmark model downloads or scientific claims** are introduced.
+
+
 ### Added — 2026-10-28
 
 - Isolated `benchmarks/` evaluation package with toy/BEIR/RAGRouter-Bench dataset adapters, provenance-preserving chunking, actual engine and fixed lexical baselines, opt-in loopback-only Qwen/vLLM client, retrieval/routing/lexical-answer metrics, resumable run fingerprints and JSON/Markdown reports.

@@ -4,6 +4,11 @@
 > Last manually verified: **2026-10-27 (Asia/Seoul)**. Status entries below are a dated snapshot, not a guarantee of perpetual uptime.
 > Owner: **Md Najmul Hossain** · GitHub: **[@hossain0707](https://github.com/hossain0707)** · Project: **AutoRAG-Router** · Version: **0.1.0 developer preview**.
 
+
+## New owner decision — active daily GitHub memory (2026-10-28)
+
+The owner explicitly approved a new **project_memory/** directory: **exactly one PROJECT_MEMORY_YYYY-MM-DD.md file per Korea calendar date**. Every subsequent individually authorized source push on the same day must update that SAME file, refresh a complete current-state snapshot and append a separate numbered change entry. Prior-day memory is preserved; no auto-push workflow is permitted. A read-only CI policy guard validates filename/entry count, not factual truth. On future sessions, start with the latest project_memory date plus this PROJECT_CONTEXT.md, current code and CI. The older docs/DAILY_LOG.md remains archival. ChatGPT Project Sources does not auto-sync with GitHub.
+
 ## Owner override — 2026-10-27
 
 **NO AUTOMATIC GITHUB PUSHES OR COMMITS.** The owner withdrew the earlier request for daily automatic GitHub writes. GitHub Actions journal is **manual, read-only preview** only, and the daily ChatGPT automation is **read-only**, allowed to report changes but forbidden to update GitHub or Vercel. Any GitHub change or deployment requires explicit case-by-case user authorization. No scheduled bot commits/pushes. This current directive supersedes earlier references below to auto-maintained files.

@@ -27,3 +27,10 @@ AutoRAG Router uses a **personal noncommercial, source-available license**. Comm
 ## Commercial demos
 
 Use `scripts/make_promo.py` for a product-concept demo and label synthetic footage. Demonstrate actual runtime behavior with the included dashboard or API example.
+
+
+## Required daily project memory on an approved change
+
+Before an owner-authorized GitHub push, create or update exactly one **project_memory/PROJECT_MEMORY_YYYY-MM-DD.md** for the HEAD commit date in **Asia/Seoul**. If that file already exists today, add a newly numbered, separately detailed **Change** entry; do not create a second same-day file. Update its project snapshot and outstanding tasks; include the reason, added/changed/removed/fixed, actual tests, deployment status, decisions, risks and next action. Explicitly state when something was not tested.
+
+Run **python scripts/check_project_memory.py --base HEAD^** locally; the read-only CI job also validates the convention. Earlier daily files are historical. The documentation requirement does not authorize unattended commits/pushes, releases, or deployments. See **docs/WORKFLOW.md** and **AGENTS.md**.

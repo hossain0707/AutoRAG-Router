@@ -1,5 +1,14 @@
 # Agent Instructions — AutoRAG Router
 
+## Daily GitHub project memory — owner decision 2026-10-28
+
+**MANDATORY for every separately approved GitHub push:** keep one dated Markdown file at **project_memory/PROJECT_MEMORY_YYYY-MM-DD.md** using **Asia/Seoul (KST)**. Read the latest daily memory FIRST, alongside current code and this AGENTS file. This is an explicit later owner decision; it supersedes older descriptions of docs/DAILY_LOG.md as the active daily log.
+
+A day's first approved push creates that day's file; every later approved push on the same date appends a NEW numbered "### Change NN — title" section and updates the complete project snapshot and remaining tasks. Record time, task/reason, added/changed/removed/fixed, tests/evidence, approved GitHub change/deployment, decisions, risks and next action. Document "None" or "Not run" honestly. Keep prior entries intact; never create duplicate same-day files or modify an older date to obscure history. One commit cannot know its own SHA in advance: the Git history provides that identifier; add it to a later verified entry only if necessary. **Only Markdown daily files** go in project_memory/; put scripts and tests elsewhere.
+
+Use **python scripts/check_project_memory.py --base HEAD^** before pushing when possible; CI checks the same rule read-only. It rejects source changes lacking a new daily entry. The guard uses the HEAD **committer timestamp in KST**, so ensure that the dated filename corresponds to that commit. The checker does not verify factual accuracy; agents must do that themselves. GitHub and Vercel still require explicit, case-by-case owner authorization; this is NOT permission for scheduled writes. Consolidated ChatGPT Project Sources memory is separate and never auto-synced.
+
+
 **This is the persistent instruction file for ChatGPT, Codex, AI coding agents and human contributors.** Always read `PROJECT_CONTEXT.md` first, then `README.md`, `CHANGELOG.md`, `docs/DAILY_LOG.md`, `docs/WORKFLOW.md`, `docs/ARCHITECTURE.md`, and inspect current source and remote deployments.
 
 ## Mission
